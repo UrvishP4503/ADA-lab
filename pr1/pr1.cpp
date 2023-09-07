@@ -1,38 +1,10 @@
 #include <chrono>
+#include <cmath>
 #include <iostream>
-
-void bubble_sort(int arr[], int len);
-void selection_sort(int arr[], int len);
-void insertion_sort(int arr[], int len);
-void merge_sort(int A[], int B[], int n);
-void merge(int B[], int iBegin, int iMiddle, int iEnd, int A[]);
-void copy_array(int A[], int iBegin, int iEnd, int B[]);
-void split_merge(int B[], int iBegin, int iEnd, int A[]);
-void quick_sort(int arr[], int low, int high);
-int partition(int arr[], int low, int high);
-
-void time_analysis_of_all() {
-    int inputTenThousand[10000];
-
-    for (int v = 9999; v > -1; --v) {
-        inputTenThousand[v] = v;
-    }
-    auto start = std::chrono::system_clock::now();
-
-    auto end = std::chrono::system_clock::now();
-
-    std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
-
-    std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds"
-              << std::endl;
-}
-
-int main(int argc, char const *argv[]) {
-    return 0;
-}
+#include <vector>
 
 // Function that performs insertion sort.
-void insertion_sort(int arr[], int len) {
+void insertion_sort(std::vector<int> &arr, int len) {
     for (int i = 1; i < len; i++) {
         int j = i;
         while (j > 0 && arr[j] < arr[j - 1]) {
@@ -43,7 +15,7 @@ void insertion_sort(int arr[], int len) {
 }
 
 // Function that performs selection sort.
-void selection_sort(int arr[], int len) {
+void selection_sort(std::vector<int> &arr, int len) {
     int min = 0;
     for (int i = 0; i < len; i++) {
         min = i;
@@ -57,7 +29,7 @@ void selection_sort(int arr[], int len) {
 }
 
 // Function that performs selection sort.
-void bubble_sort(int arr[], int len) {
+void bubble_sort(std::vector<int> &arr, int len) {
     bool is_sorting = false;
     for (int i = 0; i < len - 1; i++) {
         is_sorting = false;
@@ -72,51 +44,12 @@ void bubble_sort(int arr[], int len) {
     }
 }
 
-// Function that performs merge sort.
-void merge_sort(int A[], int B[], int n) {
-    copy_array(A, 0, n, B);  // One-time copy of A[] to B[]
-    split_merge(B, 0, n, A); // Sort data from B[] into A[]
-}
+// A helper function for quicksort to get partitioning index.
+int partition(std::vector<int> &arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
 
-void split_merge(int B[], int iBegin, int iEnd, int A[]) {
-    if (iEnd - iBegin <= 1) // If run size == 1, consider it sorted
-        return;
-
-    int iMiddle = (iEnd + iBegin) / 2;
-
-    split_merge(A, iBegin, iMiddle, B);
-    split_merge(A, iMiddle, iEnd, B);
-
-    merge(B, iBegin, iMiddle, iEnd, A);
-}
-
-// A helper function for merge sort to merge sorted arrays.
-void merge(int B[], int iBegin, int iMiddle, int iEnd, int A[]) {
-    int i = iBegin, j = iMiddle;
-
-    for (int k = iBegin; k < iEnd; k++) {
-        if (i < iMiddle && (j >= iEnd || B[i] <= B[j])) {
-            A[k] = B[i];
-            i++;
-        } else {
-            A[k] = B[j];
-            j++;
-        }
-    }
-}
-
-// It copys the elements of array to other empty array in given range.
-void copy_array(int A[], int start, int end, int B[]) {
-    for (int k = start; k < end; k++)
-        B[k] = A[k];
-}
-
-// Helper fuction for selection sort to find pivot or partition element.
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high]; // Choose the rightmost element as the pivot
-    int i = (low - 1);     // Index of smaller element
-
-    for (int j = low; j < high; j++) {
+    for (int j = low; j <= high - 1; j++) {
         if (arr[j] <= pivot) {
             i++;
             std::swap(arr[i], arr[j]);
@@ -124,14 +57,151 @@ int partition(int arr[], int low, int high) {
     }
 
     std::swap(arr[i + 1], arr[high]);
-    return (i + 1);
+    return i + 1;
 }
 
 // Function that performs quick sort.
-void quick_sort(int arr[], int low, int high) {
-    if (low > -1 && high > -1 && low < high) {
-        int pivotIndex = partition(arr, low, high);
-        quick_sort(arr, low, pivotIndex - 1);
-        quick_sort(arr, pivotIndex + 1, high);
+void quick_sort(std::vector<int> &arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quick_sort(arr, low, pi - 1);
+        quick_sort(arr, pi + 1, high);
     }
+}
+
+// Helper functin for merge sort.
+void merge(std::vector<int> &arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    std::vector<int> leftArray(n1);
+    std::vector<int> rightArray(n2);
+
+    for (int i = 0; i < n1; i++)
+        leftArray[i] = arr[left + i];
+    for (int j = 0; j < n2; j++)
+        rightArray[j] = arr[mid + 1 + j];
+
+    int i = 0, j = 0, k = left;
+
+    while (i < n1 && j < n2) {
+        if (leftArray[i] <= rightArray[j]) {
+            arr[k] = leftArray[i];
+            i++;
+        } else {
+            arr[k] = rightArray[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        arr[k] = leftArray[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = rightArray[j];
+        j++;
+        k++;
+    }
+}
+
+// Function that performs merge sort.
+void merge_sort(std::vector<int> &arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+
+        merge_sort(arr, left, mid);
+        merge_sort(arr, mid + 1, right);
+
+        merge(arr, left, mid, right);
+    }
+}
+
+int main(int argc, char const *argv[]) {
+
+    std::vector<int> inputTenThousand(10000);
+
+    for (int v = 9999; v > -1; --v) {
+        inputTenThousand[9999 - v] = v;
+    }
+
+    for (int i = 6; i <= 10; ++i) {
+
+        std::vector<int> slice(inputTenThousand);
+
+        std::cout << "+-------+-------+" << std::endl;
+        auto start = std::chrono::system_clock::now();
+        bubble_sort(slice, i * 1000);
+        auto end = std::chrono::system_clock::now();
+
+        std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+
+        std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
+    }
+
+    // for (int i = 5; i <= 10; ++i) {
+
+    //     int slice[i * 1000];
+    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
+
+    //     auto start = std::chrono::system_clock::now();
+    //     // my function calls
+    //     auto end = std::chrono::system_clock::now();
+
+    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+
+    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
+    //     delete[] slice;
+    // }
+
+    // for (int i = 5; i <= 10; ++i) {
+
+    //     int slice[i * 1000];
+    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
+
+    //     auto start = std::chrono::system_clock::now();
+    //     // my function calls
+    //     auto end = std::chrono::system_clock::now();
+
+    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+
+    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
+    //     delete[] slice;
+    // }
+
+    // for (int i = 5; i <= 10; ++i) {
+
+    //     int slice[i * 1000];
+    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
+
+    //     auto start = std::chrono::system_clock::now();
+    //     // my function calls
+    //     auto end = std::chrono::system_clock::now();
+
+    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+
+    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
+    //     delete[] slice;
+    // }
+
+    // for (int i = 5; i <= 10; ++i) {
+
+    //     int slice[i * 1000];
+    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
+
+    //     auto start = std::chrono::system_clock::now();
+    //     // my function calls
+    //     auto end = std::chrono::system_clock::now();
+
+    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+
+    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
+    //     delete[] slice;
+    // }
+
+    return 0;
 }

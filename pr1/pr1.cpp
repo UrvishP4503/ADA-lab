@@ -1,5 +1,5 @@
 #include <chrono>
-#include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <vector>
 
@@ -70,7 +70,7 @@ void quick_sort(std::vector<int> &arr, int low, int high) {
     }
 }
 
-// Helper functin for merge sort.
+// Helper function for merge sort.
 void merge(std::vector<int> &arr, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -129,79 +129,110 @@ int main(int argc, char const *argv[]) {
         inputTenThousand[9999 - v] = v;
     }
 
-    for (int i = 6; i <= 10; ++i) {
+    std::cout << "+----------+--------------+" << std::endl;
+    std::cout << "|" << std::setw(10) << "Number"
+              << "|" << std::setw(14) << "Time taken by"
+              << "|" << std::endl
+              << "|" << std::setw(10) << "of inputs"
+              << "|" << std::setw(14) << "bubble sort"
+              << "|" << std::endl;
+    std::cout << "+----------+--------------+" << std::endl;
+    for (int i = 1; i <= 10; ++i) {
 
         std::vector<int> slice(inputTenThousand);
 
-        std::cout << "+-------+-------+" << std::endl;
         auto start = std::chrono::system_clock::now();
         bubble_sort(slice, i * 1000);
         auto end = std::chrono::system_clock::now();
-
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-        std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
+        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(14) << elapsed_seconds.count() << "|" << std::endl;
+        std::cout << "+----------+--------------+" << std::endl;
     }
 
-    // for (int i = 5; i <= 10; ++i) {
+    std::cout << "+----------+---------------+" << std::endl;
+    std::cout << "|" << std::setw(10) << "Number"
+              << "|" << std::setw(15) << "Time taken by"
+              << "|" << std::endl
+              << "|" << std::setw(10) << "of inputs"
+              << "|" << std::setw(15) << "insertion sort"
+              << "|" << std::endl;
+    std::cout << "+----------+---------------+" << std::endl;
+    for (int i = 1; i <= 10; ++i) {
 
-    //     int slice[i * 1000];
-    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
+        std::vector<int> slice(inputTenThousand);
 
-    //     auto start = std::chrono::system_clock::now();
-    //     // my function calls
-    //     auto end = std::chrono::system_clock::now();
+        auto start = std::chrono::system_clock::now();
+        insertion_sort(slice, i * 1000);
+        auto end = std::chrono::system_clock::now();
+        std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(15) << elapsed_seconds.count() << "|" << std::endl;
+        std::cout << "+----------+---------------+" << std::endl;
+    }
 
-    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
-    //     delete[] slice;
-    // }
+    std::cout << "+----------+---------------+" << std::endl;
+    std::cout << "|" << std::setw(10) << "Number"
+              << "|" << std::setw(15) << "Time taken by"
+              << "|" << std::endl
+              << "|" << std::setw(10) << "of inputs"
+              << "|" << std::setw(15) << "selection sort"
+              << "|" << std::endl;
+    std::cout << "+----------+---------------+" << std::endl;
+    for (int i = 1; i <= 10; ++i) {
 
-    // for (int i = 5; i <= 10; ++i) {
+        std::vector<int> slice(inputTenThousand);
 
-    //     int slice[i * 1000];
-    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
+        auto start = std::chrono::system_clock::now();
+        selection_sort(slice, i * 1000);
+        auto end = std::chrono::system_clock::now();
+        std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-    //     auto start = std::chrono::system_clock::now();
-    //     // my function calls
-    //     auto end = std::chrono::system_clock::now();
+        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(15) << elapsed_seconds.count() << "|" << std::endl;
+        std::cout << "+----------+---------------+" << std::endl;
+    }
 
-    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+    std::cout << "+----------+--------------+" << std::endl;
+    std::cout << "|" << std::setw(10) << "Number"
+              << "|" << std::setw(14) << "Time taken by"
+              << "|" << std::endl
+              << "|" << std::setw(10) << "of inputs"
+              << "|" << std::setw(14) << "quick sort"
+              << "|" << std::endl;
+    std::cout << "+----------+--------------+" << std::endl;
+    for (int i = 1; i <= 10; ++i) {
 
-    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
-    //     delete[] slice;
-    // }
+        std::vector<int> slice(inputTenThousand);
 
-    // for (int i = 5; i <= 10; ++i) {
+        auto start = std::chrono::system_clock::now();
+        quick_sort(slice, 0, (i * 1000) - 1);
+        auto end = std::chrono::system_clock::now();
+        std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-    //     int slice[i * 1000];
-    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
+        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(14) << elapsed_seconds.count() << "|" << std::endl;
+        std::cout << "+----------+--------------+" << std::endl;
+    }
 
-    //     auto start = std::chrono::system_clock::now();
-    //     // my function calls
-    //     auto end = std::chrono::system_clock::now();
+    std::cout << "+----------+--------------+" << std::endl;
+    std::cout << "|" << std::setw(10) << "Number"
+              << "|" << std::setw(14) << "Time taken by"
+              << "|" << std::endl
+              << "|" << std::setw(10) << "of inputs"
+              << "|" << std::setw(14) << "merge sort"
+              << "|" << std::endl;
+    std::cout << "+----------+--------------+" << std::endl;
+    for (int i = 1; i <= 10; ++i) {
 
-    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+        std::vector<int> slice(inputTenThousand);
 
-    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
-    //     delete[] slice;
-    // }
+        auto start = std::chrono::system_clock::now();
+        merge_sort(slice, 0, (i * 1000) - 1);
+        auto end = std::chrono::system_clock::now();
+        std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-    // for (int i = 5; i <= 10; ++i) {
-
-    //     int slice[i * 1000];
-    //     copy_array(inputTenThousand, 0, (i * 1000), slice);
-
-    //     auto start = std::chrono::system_clock::now();
-    //     // my function calls
-    //     auto end = std::chrono::system_clock::now();
-
-    //     std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
-
-    //     std::cout << "elapsed time: " << elapsed_seconds.count() << " milli seconds";
-    //     delete[] slice;
-    // }
+        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(14) << elapsed_seconds.count() << "|" << std::endl;
+        std::cout << "+----------+--------------+" << std::endl;
+    }
 
     return 0;
 }

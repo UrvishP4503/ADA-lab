@@ -196,7 +196,7 @@ int main(int argc, char const *argv[]) {
               << "|" << std::setw(15) << "Time taken by"
               << "|" << std::setw(15) << "Time taken by"
               << "|" << std::endl
-              << "|" << std::setw(10) << ""
+              << "|" << std::setw(10) << "of inputs"
               << "|" << std::setw(15) << "bubble sort"
               << "|" << std::setw(15) << "insertion sort"
               << "|" << std::setw(15) << "selection sort"

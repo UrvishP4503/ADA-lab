@@ -123,15 +123,15 @@ void merge_sort(std::vector<int> &arr, int left, int right) {
 
 int main(int argc, char const *argv[]) {
 
-    std::vector<int> inputTenThousand(10000);
+    std::vector<int> inputTwentyFourThousand(24000);
     std::vector<std::chrono::duration<double, std::milli>> ans;
-    for (int v = 9999; v > -1; --v) {
-        inputTenThousand[9999 - v] = v;
+    for (int v = 24000; v > -1; --v) {
+        inputTwentyFourThousand[24000 - v] = v;
     }
 
-    for (int i = 1; i <= 10; ++i) {
+    for (int i = 4; i <= 24; i += 2) {
 
-        std::vector<int> slice(inputTenThousand);
+        std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
         bubble_sort(slice, i * 1000);
@@ -140,9 +140,9 @@ int main(int argc, char const *argv[]) {
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 1; i <= 10; ++i) {
+    for (int i = 4; i <= 24; i += 2) {
 
-        std::vector<int> slice(inputTenThousand);
+        std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
         insertion_sort(slice, i * 1000);
@@ -152,9 +152,9 @@ int main(int argc, char const *argv[]) {
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 1; i <= 10; ++i) {
+    for (int i = 4; i <= 24; i += 2) {
 
-        std::vector<int> slice(inputTenThousand);
+        std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
         selection_sort(slice, i * 1000);
@@ -164,24 +164,24 @@ int main(int argc, char const *argv[]) {
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 1; i <= 10; ++i) {
+    for (int i = 4; i <= 24; i += 2) {
 
-        std::vector<int> slice(inputTenThousand);
+        std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
-        quick_sort(slice, 0, (i * 1000) - 1);
+        merge_sort(slice, 0, (i * 1000) - 1);
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 1; i <= 10; ++i) {
+    for (int i = 4; i <= 24; i += 2) {
 
-        std::vector<int> slice(inputTenThousand);
+        std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
-        merge_sort(slice, 0, (i * 1000) - 1);
+        quick_sort(slice, 0, (i * 1000) - 1);
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
@@ -200,18 +200,18 @@ int main(int argc, char const *argv[]) {
               << "|" << std::setw(15) << "bubble sort"
               << "|" << std::setw(15) << "insertion sort"
               << "|" << std::setw(15) << "selection sort"
-              << "|" << std::setw(15) << "quick sort"
               << "|" << std::setw(15) << "merge sort"
+              << "|" << std::setw(15) << "quick sort"
               << "|" << std::endl;
     std::cout << "+----------+---------------+---------------+---------------+---------------+---------------+" << std::endl;
 
-    for (int i = 0; i < 10; i++) {
-        std::cout << "|" << std::setw(10) << 1000 + (i * 1000) << "|"
+    for (int i = 0; i < 11; i++) {
+        std::cout << "|" << std::setw(10) << 4000 + (i * 2000) << "|"
                   << std::setw(11) << ans[i].count() << " ms |"
-                  << std::setw(11) << ans[i + 10].count() << " ms |"
-                  << std::setw(11) << ans[i + 20].count() << " ms |"
-                  << std::setw(11) << ans[i + 30].count() << " ms |"
-                  << std::setw(11) << ans[i + 40].count() << " ms |" << std::endl;
+                  << std::setw(11) << ans[i + 11].count() << " ms |"
+                  << std::setw(11) << ans[i + 22].count() << " ms |"
+                  << std::setw(11) << ans[i + 33].count() << " ms |"
+                  << std::setw(11) << ans[i + 44].count() << " ms |" << std::endl;
         std::cout << "+----------+---------------+---------------+---------------+---------------+---------------+" << std::endl;
     }
 

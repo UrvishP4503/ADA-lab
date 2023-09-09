@@ -124,19 +124,11 @@ void merge_sort(std::vector<int> &arr, int left, int right) {
 int main(int argc, char const *argv[]) {
 
     std::vector<int> inputTenThousand(10000);
-
+    std::vector<std::chrono::duration<double, std::milli>> ans;
     for (int v = 9999; v > -1; --v) {
         inputTenThousand[9999 - v] = v;
     }
 
-    std::cout << "+----------+--------------+" << std::endl;
-    std::cout << "|" << std::setw(10) << "Number"
-              << "|" << std::setw(14) << "Time taken by"
-              << "|" << std::endl
-              << "|" << std::setw(10) << "of inputs"
-              << "|" << std::setw(14) << "bubble sort"
-              << "|" << std::endl;
-    std::cout << "+----------+--------------+" << std::endl;
     for (int i = 1; i <= 10; ++i) {
 
         std::vector<int> slice(inputTenThousand);
@@ -145,19 +137,9 @@ int main(int argc, char const *argv[]) {
         bubble_sort(slice, i * 1000);
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
-
-        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(14) << elapsed_seconds.count() << "|" << std::endl;
-        std::cout << "+----------+--------------+" << std::endl;
+        ans.push_back(elapsed_seconds);
     }
 
-    std::cout << "+----------+---------------+" << std::endl;
-    std::cout << "|" << std::setw(10) << "Number"
-              << "|" << std::setw(15) << "Time taken by"
-              << "|" << std::endl
-              << "|" << std::setw(10) << "of inputs"
-              << "|" << std::setw(15) << "insertion sort"
-              << "|" << std::endl;
-    std::cout << "+----------+---------------+" << std::endl;
     for (int i = 1; i <= 10; ++i) {
 
         std::vector<int> slice(inputTenThousand);
@@ -167,18 +149,9 @@ int main(int argc, char const *argv[]) {
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(15) << elapsed_seconds.count() << "|" << std::endl;
-        std::cout << "+----------+---------------+" << std::endl;
+        ans.push_back(elapsed_seconds);
     }
 
-    std::cout << "+----------+---------------+" << std::endl;
-    std::cout << "|" << std::setw(10) << "Number"
-              << "|" << std::setw(15) << "Time taken by"
-              << "|" << std::endl
-              << "|" << std::setw(10) << "of inputs"
-              << "|" << std::setw(15) << "selection sort"
-              << "|" << std::endl;
-    std::cout << "+----------+---------------+" << std::endl;
     for (int i = 1; i <= 10; ++i) {
 
         std::vector<int> slice(inputTenThousand);
@@ -188,18 +161,9 @@ int main(int argc, char const *argv[]) {
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(15) << elapsed_seconds.count() << "|" << std::endl;
-        std::cout << "+----------+---------------+" << std::endl;
+        ans.push_back(elapsed_seconds);
     }
 
-    std::cout << "+----------+--------------+" << std::endl;
-    std::cout << "|" << std::setw(10) << "Number"
-              << "|" << std::setw(14) << "Time taken by"
-              << "|" << std::endl
-              << "|" << std::setw(10) << "of inputs"
-              << "|" << std::setw(14) << "quick sort"
-              << "|" << std::endl;
-    std::cout << "+----------+--------------+" << std::endl;
     for (int i = 1; i <= 10; ++i) {
 
         std::vector<int> slice(inputTenThousand);
@@ -209,18 +173,9 @@ int main(int argc, char const *argv[]) {
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(14) << elapsed_seconds.count() << "|" << std::endl;
-        std::cout << "+----------+--------------+" << std::endl;
+        ans.push_back(elapsed_seconds);
     }
 
-    std::cout << "+----------+--------------+" << std::endl;
-    std::cout << "|" << std::setw(10) << "Number"
-              << "|" << std::setw(14) << "Time taken by"
-              << "|" << std::endl
-              << "|" << std::setw(10) << "of inputs"
-              << "|" << std::setw(14) << "merge sort"
-              << "|" << std::endl;
-    std::cout << "+----------+--------------+" << std::endl;
     for (int i = 1; i <= 10; ++i) {
 
         std::vector<int> slice(inputTenThousand);
@@ -230,8 +185,34 @@ int main(int argc, char const *argv[]) {
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
-        std::cout << "|" << std::setw(10) << i * 1000 << "|" << std::setw(14) << elapsed_seconds.count() << "|" << std::endl;
-        std::cout << "+----------+--------------+" << std::endl;
+        ans.push_back(elapsed_seconds);
+    }
+
+    std::cout << "+----------+---------------+---------------+---------------+---------------+---------------+" << std::endl;
+    std::cout << "|" << std::setw(10) << "Number"
+              << "|" << std::setw(15) << "Time taken by"
+              << "|" << std::setw(15) << "Time taken by"
+              << "|" << std::setw(15) << "Time taken by"
+              << "|" << std::setw(15) << "Time taken by"
+              << "|" << std::setw(15) << "Time taken by"
+              << "|" << std::endl
+              << "|" << std::setw(10) << ""
+              << "|" << std::setw(15) << "bubble sort"
+              << "|" << std::setw(15) << "insertion sort"
+              << "|" << std::setw(15) << "selection sort"
+              << "|" << std::setw(15) << "quick sort"
+              << "|" << std::setw(15) << "merge sort"
+              << "|" << std::endl;
+    std::cout << "+----------+---------------+---------------+---------------+---------------+---------------+" << std::endl;
+
+    for (int i = 0; i < 10; i++) {
+        std::cout << "|" << std::setw(10) << 1000 + (i * 1000) << "|"
+                  << std::setw(11) << ans[i].count() << " ms |"
+                  << std::setw(11) << ans[i + 10].count() << " ms |"
+                  << std::setw(11) << ans[i + 20].count() << " ms |"
+                  << std::setw(11) << ans[i + 30].count() << " ms |"
+                  << std::setw(11) << ans[i + 40].count() << " ms |" << std::endl;
+        std::cout << "+----------+---------------+---------------+---------------+---------------+---------------+" << std::endl;
     }
 
     return 0;

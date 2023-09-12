@@ -3,6 +3,17 @@
 #include <iostream>
 #include <vector>
 
+/**
+ * @brief Perform a binary search in an integer vector.
+ * 
+ * This function searches for the specified 'key' in given 'arr' of integers.
+ * 
+ * @param arr The vector of inters to search.
+ * @param key The integer value to find.
+ * @param len The number of elemets in the vector. 
+ * 
+ * @return The index of 'key' if found; -1 if not found. 
+ */
 int binary_search(std::vector<int> arr, int key, int len) {
     int mid, low = 0, high = len;
 
@@ -20,6 +31,17 @@ int binary_search(std::vector<int> arr, int key, int len) {
     return -1;
 }
 
+/**
+ * @brief Perform a linear search in an integer vector.
+ *
+ * This function searches for the specified 'key' in the given 'arr' of integers.
+ *
+ * @param arr The vector of integers to search.
+ * @param key The integer value to find.
+ * @param len The number of elements in the vector.
+ *
+ * @return The index of 'key' if found; -1 if not found.
+ */
 int linear_search(std::vector<int> arr, int key, int len) {
     for (int i = 0; i < len; i++) {
         if (key == arr[i]) {

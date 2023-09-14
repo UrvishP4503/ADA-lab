@@ -70,7 +70,7 @@ int main(int argc, char const *argv[]) {
     for (int i = 1; i <= 10; ++i) {
 
         auto start = std::chrono::system_clock::now();
-        linear_search(inputTenThousand, i * 1000, i * 1000);
+        auto t = linear_search(inputTenThousand, i * 1000, i * 1000 + 1);
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 
@@ -91,7 +91,7 @@ int main(int argc, char const *argv[]) {
     for (int i = 1; i <= 10; ++i) {
 
         auto start = std::chrono::system_clock::now();
-        binary_search(inputTenThousand, keys[i - 1], i * 1000);
+        auto temp = (inputTenThousand, keys[i - 1], i * 1000);
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
 

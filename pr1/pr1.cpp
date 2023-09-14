@@ -28,7 +28,7 @@ void selection_sort(std::vector<int> &arr, int len) {
     }
 }
 
-// Function that performs selection sort.
+// Function that performs bubble sort.
 void bubble_sort(std::vector<int> &arr, int len) {
     bool is_sorting = false;
     for (int i = 0; i < len - 1; i++) {

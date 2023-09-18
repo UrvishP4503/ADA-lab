@@ -46,7 +46,7 @@ double factorial_i(int n) {
  * @return The 'nth' fibonacci number.
  */
 double fibonacci_r(int n) {
-    if (n <= 2) {
+    if (n <= 1) {
         return 1;
     }
 
@@ -68,9 +68,10 @@ double fibonacci_i(int n) {
 
     double ans = 1;
     double pre = 1;
+    double temp;
 
     for (int i = 3; i <= n; i++) {
-        double temp = ans;
+        temp = ans;
         ans += pre;
         pre = temp;
     }
@@ -131,9 +132,9 @@ int main(int argc, char const *argv[]) {
     for (int i = 0; i < 10; i++) {
         std::cout << "|" << std::setw(10) << (i + 1) + 20 << "|"
                   << std::setw(11) << ans[i].count() << " ms |"
-                  << std::setw(11) << ans[i + 9].count() << " ms |"
-                  << std::setw(11) << ans[i + 9].count() << " ms |"
-                  << std::setw(11) << ans[i + 9].count() << " ms |" << std::endl;
+                  << std::setw(11) << ans[i + 10].count() << " ms |"
+                  << std::setw(11) << ans[i + 20].count() << " ms |"
+                  << std::setw(11) << ans[i + 30].count() << " ms |" << std::endl;
         std::cout << "+----------+---------------+---------------+---------------+---------------+" << std::endl;
     }
 

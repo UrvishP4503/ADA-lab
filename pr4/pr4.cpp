@@ -81,8 +81,9 @@ double fibonacci_i(int n) {
 
 int main(int argc, char const *argv[]) {
     std::vector<std::chrono::duration<double, std::nano>> ans;
+    std::vector<std::chrono::duration<double, std::milli>> ans1;
 
-    for (int i = 30; i > 20; i--) {
+    for (int i = 40; i > 30; i--) {
         auto start = std::chrono::system_clock::now();
         auto t = fibonacci_i(i);
         auto end = std::chrono::system_clock::now();
@@ -90,15 +91,15 @@ int main(int argc, char const *argv[]) {
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 30; i > 20; i--) {
+    for (int i = 40; i > 30; i--) {
         auto start = std::chrono::system_clock::now();
         auto t = fibonacci_r(i);
         auto end = std::chrono::system_clock::now();
-        std::chrono::duration<double, std::nano> elapsed_seconds = end - start;
-        ans.push_back(elapsed_seconds);
+        std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+        ans1.push_back(elapsed_seconds);
     }
 
-    for (int i = 30; i > 20; i--) {
+    for (int i = 40; i > 30; i--) {
         auto start = std::chrono::system_clock::now();
         auto t = factorial_i(i);
         auto end = std::chrono::system_clock::now();
@@ -106,7 +107,7 @@ int main(int argc, char const *argv[]) {
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 30; i > 20; i--) {
+    for (int i = 40; i > 30; i--) {
         auto start = std::chrono::system_clock::now();
         auto t = factorial_r(i);
         auto end = std::chrono::system_clock::now();
@@ -131,10 +132,10 @@ int main(int argc, char const *argv[]) {
 
     for (int i = 9; i >= 0; i--) {
         std::cout << "|" << std::setw(10) << 20 + (10 - i) << "|"
-                  << std::setw(11) << ans[i].count() << " ms |"
-                  << std::setw(11) << ans[i + 10].count() << " ms |"
-                  << std::setw(11) << ans[i + 20].count() << " ms |"
-                  << std::setw(11) << ans[i + 30].count() << " ms |" << std::endl;
+                  << std::setw(11) << ans[i].count() << " ns |"
+                  << std::setw(11) << ans1[i].count() << " ms |"
+                  << std::setw(11) << ans[i + 10].count() << " ns |"
+                  << std::setw(11) << ans[i + 20].count() << " ns |" << std::endl;
         std::cout << "+----------+---------------+---------------+---------------+---------------+" << std::endl;
     }
 

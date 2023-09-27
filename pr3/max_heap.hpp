@@ -14,10 +14,10 @@ public:
     Max_heap(std::vector<int> &vec);
     void heapify(int i);
     void heap_sort();
+    void print();
     // inline Max_heap() {}
     // Max_heap(std::initializer_list<T> initial_list);
     // void add(T elements[], int length);
-    void print();
 };
 
 template <class T>
@@ -78,6 +78,14 @@ void Max_heap<T>::heap_sort() {
     this->size = temp;
 }
 
+template <class T>
+void Max_heap<T>::print() {
+    for (int i = 0; i < this->size; i++) {
+        std::cout << this->heap.at(i) << " ";
+    }
+    std::cout << std::endl;
+}
+
 // template <typename T>
 // Max_heap<T>::Max_heap(std::initializer_list<T> initial_list) {
 //     for (const T &element : initial_list) {
@@ -116,11 +124,3 @@ void Max_heap<T>::heap_sort() {
 //         }
 //     }
 // }
-
-template <class T>
-void Max_heap<T>::print() {
-    for (int i = 0; i < this->size; i++) {
-        std::cout << this->heap.at(i) << " ";
-    }
-    std::cout << std::endl;
-}

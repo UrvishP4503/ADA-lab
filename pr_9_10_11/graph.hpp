@@ -14,7 +14,7 @@ private:
 
 public:
     void insert_node(T node, T neighbour, int weight);
-    void dfs(T start_node);
+    void dfs(T start_node, std::unordered_set<T> &visited_list);
     void bfs(T start_node);
     void prim(T start_node);
     void kruskal(T start_node);
@@ -26,7 +26,7 @@ public:
             std::cout << p.first << "->";
 
             for (const auto &v : p.second) {
-                std::cout << " " << v.first << " " << v.second << " :: ";
+                std::cout << " :: " << v.first << " " << v.second;
             }
 
             std::cout << std::endl;
@@ -51,11 +51,19 @@ void Graph<T>::insert_node(T node, T neighbour, int weight) {
 }
 
 template <typename T>
-void Graph<T>::dfs(T start_node) {}
+void Graph<T>::dfs(T start_node, std::unordered_set<T> &visited_list) {
+    visited_list.insert(start_node);
+    std::cout << start_node << " :: ";
+
+    for (const auto &neigbour : graph[start_node]) {
+        if (visited_list.find(neigbour.first) == visited_list.end()) {
+            this->dfs(neigbour.first, visited_list);
+        }
+    }
+}
 
 template <typename T>
-void Graph<T>::bfs(T start_node) {
-}
+void Graph<T>::bfs(T start_node) {}
 
 template <typename T>
 void Graph<T>::prim(T start_node) {}

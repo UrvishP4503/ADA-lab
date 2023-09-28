@@ -12,10 +12,16 @@ int main(int argc, char const *argv[]) {
     std::vector<int> arr = {17, 16, 13, 14, 7, 9, 11, 5, 12, 8, 1, 4, 3, 6, 10};
     Max_heap<int> test2 = arr;
 
-    for (int i = 15 / 2; i >= 0; i--) {
-        test2.heapify(i);
+    std::cout << "Given list of elements: ";
+    for (auto i : arr) {
+        std::cout << i << " ";
     }
+    std::cout << std::endl;
+    // for (int i = 15 / 2; i >= 0; i--) {
+    //     test2.heapify(i);
+    // }
 
+    std::cout << "After heap sort: ";
     test2.heap_sort();
     test2.print();
     return 0;

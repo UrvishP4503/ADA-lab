@@ -100,7 +100,45 @@ void Graph<T>::bfs(T start_node) {
 }
 
 template <typename T>
-void Graph<T>::prim(T start_node) {}
+void Graph<T>::prim(T start_node) {
+
+    std::unordered_set<T> visited;
+
+    // initializing a priority queue to find the smallest elements.
+    std::priority_queue<std::pair<int, T>, std::vector<std::pair<int, T>>, std::greater<std::pair<int, T>>> pq;
+
+    int total_weight = 0;
+    // starting with 0 weight
+    pq.push({0, start_node});
+
+    while (!pq.empty()) {
+        // gets the node with lowest weight.
+        T current_node = pq.top().second;
+
+        // get the weight of the node with lowest weight.
+        int current_weight = pq.top().first;
+
+        pq.pop();
+
+        // checking if the current node has already been visited.
+        // If it has, the loop continues to the next iteration.
+        if (visited.find(current_node) != visited.end()) {
+            continue;
+        }
+
+        visited.insert(current_node);
+        total_weight += current_weight;
+
+        std::cout << " -> " << current_node;
+        for (const auto &neighbor : this->graph[current_node]) {
+            if (visited.find(neighbor.first) == visited.end()) {
+                pq.push({neighbor.second, neighbor.first});
+            }
+        }
+    }
+
+    std::cout << "\nTotal Weight: " << total_weight << std::endl;
+}
 
 template <typename T>
 void Graph<T>::kruskal(T start_node) {}

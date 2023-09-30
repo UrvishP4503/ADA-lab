@@ -1,6 +1,8 @@
 #include <chrono>
+#include <functional>
 #include <iomanip>
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 /**
@@ -80,9 +82,15 @@ double fibonacci_i(int n) {
 }
 
 int main(int argc, char const *argv[]) {
-    std::vector<std::chrono::duration<double, std::nano>> ans;
+    std::vector<std::chrono::duration<double, std::milli>> ans;
     std::vector<std::chrono::duration<double, std::milli>> ans1;
+    static std::unordered_map<int, double> memo;
 
+    const std::function<double(int)> fib = [&](int n) -> int {
+        return (memo.find(n) != memo.end()) ? memo[n]
+               : (n <= 2)                   ? 1
+                                            : (memo[n] = fib(n - 1) + fib(n - 2));
+    };
     for (int i = 50; i > 40; i--) {
         auto start = std::chrono::system_clock::now();
         auto t = fibonacci_i(i);
@@ -93,9 +101,9 @@ int main(int argc, char const *argv[]) {
 
     for (int i = 50; i > 40; i--) {
         auto start = std::chrono::system_clock::now();
-        auto t = fibonacci_r(i);
+        auto t = fib(i);
         auto end = std::chrono::system_clock::now();
-        std::chrono::duration<double, std::milli> elapsed_seconds = end - start;
+        std::chrono::duration<double, std::nano> elapsed_seconds = end - start;
         ans1.push_back(elapsed_seconds);
     }
 

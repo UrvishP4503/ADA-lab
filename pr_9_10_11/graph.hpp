@@ -1,6 +1,7 @@
 #pragma 0
 #define GRAPH_HPP
 
+#include <functional>
 #include <iostream>
 #include <queue>
 #include <unordered_map>
@@ -141,4 +142,45 @@ void Graph<T>::prim(T start_node) {
 }
 
 template <typename T>
-void Graph<T>::kruskal(T start_node) {}
+void Graph<T>::kruskal(T start_node) {
+    // Initialize a priority queue for the edges
+    std::priority_queue<std::tuple<int, T, T>, std::vector<std::tuple<int, T, T>>, std::greater<std::tuple<int, T, T>>> edge_list;
+
+    // Initialize a disjoint-set data structure to keep track of connected components
+    std::unordered_map<T, T> parent;
+
+    // Helper function to find the root of a set
+    const std::function<T(T)> find_root = [&](T node) {
+        if (parent[node] != node) {
+            parent[node] = find_root(parent[node]);
+        }
+        return parent[node];
+    };
+
+    // Initialize parent pointers and add edges to the priority queue
+    for (const auto &p : this->graph) {
+        parent[p.first] = p.first;
+        for (const auto &v : p.second) {
+            edge_list.push(std::make_tuple(v.second, p.first, v.first));
+        }
+    }
+
+    int total_weight = 0;
+
+    while (!edge_list.empty()) {
+        int weight;
+        T from, to;
+        std::tie(weight, from, to) = edge_list.top();
+        edge_list.pop();
+
+        T root_from = find_root(from);
+        T root_to = find_root(to);
+
+        if (root_from != root_to) {
+            parent[root_from] = root_to;
+            total_weight += weight;
+        }
+    }
+
+    std::cout << "Total Weight of Minimum Spanning Tree: " << total_weight << std::endl;
+}

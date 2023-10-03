@@ -4,6 +4,7 @@
 #include <functional>
 #include <iostream>
 #include <queue>
+#include <stack>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -19,28 +20,14 @@ public:
     void bfs(T start_node);
     void prim(T start_node);
     void kruskal(T start_node);
-    void print() {
-
-        std::cout << std::endl;
-        for (const auto &p : this->graph) {
-
-            std::cout << p.first << "->";
-
-            for (const auto &v : p.second) {
-                std::cout << " :: " << v.first << " " << v.second;
-            }
-
-            std::cout << std::endl;
-        }
-    }
 };
 
 /**
  * @brief This function makes node.
- * 
+ *
  * If node already exists then it will just update the adjacency lists.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param node The node to added.
  * @param neighbour it is the neighbour of `node`.
  * @param weight the cost of edge between `node` and `neighbour`.
@@ -56,14 +43,13 @@ void Graph<T>::insert_node(T node, T neighbour, int weight) {
 
 template <typename T>
 void Graph<T>::dfs(T start_node, std::unordered_set<T> &visited_list) {
-
     if (this->graph.find(start_node) == this->graph.end()) {
         return;
     }
 
     visited_list.insert(start_node);
 
-    std::cout << start_node << " :: ";
+    std::cout << start_node << " ";
     for (const auto &neigbour : graph[start_node]) {
         if (visited_list.find(neigbour.first) == visited_list.end()) {
             this->dfs(neigbour.first, visited_list);
@@ -88,9 +74,8 @@ void Graph<T>::bfs(T start_node) {
         T curr = quwuw.front();
         quwuw.pop();
         if (visited_list.find(curr) == visited_list.end()) {
-
             visited_list.insert(curr);
-            std::cout << curr << " :: ";
+            std::cout << curr << " ";
             for (const auto &node : this->graph[curr]) {
                 if (visited_list.find(node.first) == visited_list.end()) {
                     quwuw.push(node.first);
@@ -102,7 +87,7 @@ void Graph<T>::bfs(T start_node) {
 
 template <typename T>
 void Graph<T>::prim(T start_node) {
-
+    std::cout << "\n";
     std::unordered_set<T> visited;
 
     // initializing a priority queue to find the smallest elements.
@@ -115,12 +100,10 @@ void Graph<T>::prim(T start_node) {
     while (!pq.empty()) {
         // gets the node with lowest weight.
         T current_node = pq.top().second;
-
         // get the weight of the node with lowest weight.
         int current_weight = pq.top().first;
 
         pq.pop();
-
         // checking if the current node has already been visited.
         // If it has, the loop continues to the next iteration.
         if (visited.find(current_node) != visited.end()) {
@@ -130,7 +113,8 @@ void Graph<T>::prim(T start_node) {
         visited.insert(current_node);
         total_weight += current_weight;
 
-        std::cout << " -> " << current_node;
+        std::cout << "\nCurrent node -> " << current_node << " && current weight -> " << current_weight;
+
         for (const auto &neighbor : this->graph[current_node]) {
             if (visited.find(neighbor.first) == visited.end()) {
                 pq.push({neighbor.second, neighbor.first});
@@ -179,6 +163,7 @@ void Graph<T>::kruskal(T start_node) {
         if (root_from != root_to) {
             parent[root_from] = root_to;
             total_weight += weight;
+            std::cout << "Selected edge " << root_from << " -> " << root_to << std::endl;
         }
     }
 

@@ -68,8 +68,6 @@ void Graph<T>::bfs(T start_node) {
 
     quwuw.push(start_node);
 
-    std::cout << std::endl;
-
     while (!quwuw.empty()) {
         T curr = quwuw.front();
         quwuw.pop();

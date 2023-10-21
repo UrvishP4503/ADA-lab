@@ -5,9 +5,9 @@
 
 /**
  * @brief Find the factorial of an number.
- * 
+ *
  * This function uses the recursive approach.
- * 
+ *
  * @param n The of that we have to find factorial of.
  * @return The factorial of 'n'.
  */
@@ -21,9 +21,9 @@ double factorial_r(int n) {
 
 /**
  * @brief Find the factorial of an number.
- * 
+ *
  * This function uses the iterative approach.
- *  
+ *
  * @param n The of that we have to find factorial of.
  * @return The factorial of 'n'.
  */
@@ -39,10 +39,10 @@ double factorial_i(int n) {
 
 /**
  * @brief Find the nth number in fibonacci series.
- * 
+ *
  * This function uses the recursive approach.
- * 
- * @param n The 'nth' number. 
+ *
+ * @param n The 'nth' number.
  * @return The 'nth' fibonacci number.
  */
 double fibonacci_r(int n) {
@@ -55,10 +55,10 @@ double fibonacci_r(int n) {
 
 /**
  * @brief Find the nth number in fibonacci series.
- * 
+ *
  * This function uses the iterative approach.
- * 
- * @param n The 'nth' number. 
+ *
+ * @param n The 'nth' number.
  * @return The 'nth' fibonacci number.
  */
 double fibonacci_i(int n) {
@@ -83,7 +83,7 @@ int main(int argc, char const *argv[]) {
     std::vector<std::chrono::duration<double, std::nano>> ans;
     std::vector<std::chrono::duration<double, std::milli>> ans1;
 
-    for (int i = 50; i > 40; i--) {
+    for (int i = 50; i > 40; i -= 2) {
         auto start = std::chrono::system_clock::now();
         auto t = fibonacci_i(i);
         auto end = std::chrono::system_clock::now();
@@ -91,7 +91,7 @@ int main(int argc, char const *argv[]) {
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 50; i > 40; i--) {
+    for (int i = 50; i > 40; i -= 2) {
         auto start = std::chrono::system_clock::now();
         auto t = fibonacci_r(i);
         auto end = std::chrono::system_clock::now();
@@ -99,7 +99,7 @@ int main(int argc, char const *argv[]) {
         ans1.push_back(elapsed_seconds);
     }
 
-    for (int i = 50; i > 40; i--) {
+    for (int i = 50; i > 40; i -= 2) {
         auto start = std::chrono::system_clock::now();
         auto t = factorial_i(i);
         auto end = std::chrono::system_clock::now();
@@ -107,7 +107,7 @@ int main(int argc, char const *argv[]) {
         ans.push_back(elapsed_seconds);
     }
 
-    for (int i = 50; i > 40; i--) {
+    for (int i = 50; i > 40; i -= 2) {
         auto start = std::chrono::system_clock::now();
         auto t = factorial_r(i);
         auto end = std::chrono::system_clock::now();

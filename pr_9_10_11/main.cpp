@@ -17,13 +17,13 @@ int main() {
     graph.insert_node(7, 6, 2);
     graph.insert_node(6, 5, 5);
     graph.insert_node(8, 9, 4);
-    std::unordered_set<int> v;
-    std::cout << "DFS: ";
-    graph.dfs(4, v);
+    // std::unordered_set<int> v;
+    // std::cout << "DFS: ";
+    // graph.dfs(4, v);
 
-    std::cout << "BFS: ";
-    graph.bfs(4);
-    graph.prim(0);
+    // std::cout << "\nBFS: ";
+    // graph.bfs(4);
+    // graph.prim(0);
     graph.kruskal(0);
     return 0;
 }

@@ -5,14 +5,14 @@
 
 /**
  * @brief Perform a binary search in an integer vector.
- * 
+ *
  * This function searches for the specified 'key' in given 'arr' of integers.
- * 
+ *
  * @param arr The vector of inters to search.
  * @param key The integer value to find.
- * @param len The number of elemets in the vector. 
- * 
- * @return The index of 'key' if found; -1 if not found. 
+ * @param len The number of elemets in the vector.
+ *
+ * @return The index of 'key' if found; -1 if not found.
  */
 int binary_search(std::vector<int> arr, int key, int len) {
     int mid, low = 0, high = len - 1;
@@ -62,7 +62,6 @@ int main(int argc, char const *argv[]) {
     }
 
     for (int i = 10; i >= 1; i--) {
-
         auto start = std::chrono::system_clock::now();
         auto t = linear_search(input, (i * 10000) - 1, i * 10000);
         auto end = std::chrono::system_clock::now();
@@ -73,7 +72,6 @@ int main(int argc, char const *argv[]) {
     int keys[] = {10203, 70089, 50550, 200, 7650, 5000, 40321, 80000, 1101, 900};
 
     for (int i = 10; i >= 1; i--) {
-
         auto start = std::chrono::system_clock::now();
         auto temp = binary_search(input, keys[i - 1], i * 10000);
         auto end = std::chrono::system_clock::now();
@@ -92,7 +90,7 @@ int main(int argc, char const *argv[]) {
               << "|" << std::endl;
     std::cout << "+-----------+---------------+---------------+" << std::endl;
 
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 2; i <= 10; i += 2) {
         std::cout << "|" << std::setw(11) << i * 10000 << "|"
                   << std::setw(13) << ans1[10 - i].count() << "  |"
                   << std::setw(13) << ans2[10 - i].count() << "  |" << std::endl;

@@ -122,7 +122,6 @@ void merge_sort(std::vector<int> &arr, int left, int right) {
 }
 
 int main(int argc, char const *argv[]) {
-
     std::vector<int> inputTwentyFourThousand(24000);
     std::vector<std::chrono::duration<double, std::milli>> ans;
     for (int v = 24000; v > -1; --v) {
@@ -130,7 +129,6 @@ int main(int argc, char const *argv[]) {
     }
 
     for (int i = 4; i <= 24; i += 2) {
-
         std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
@@ -141,7 +139,6 @@ int main(int argc, char const *argv[]) {
     }
 
     for (int i = 4; i <= 24; i += 2) {
-
         std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
@@ -153,7 +150,6 @@ int main(int argc, char const *argv[]) {
     }
 
     for (int i = 4; i <= 24; i += 2) {
-
         std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
@@ -165,7 +161,6 @@ int main(int argc, char const *argv[]) {
     }
 
     for (int i = 4; i <= 24; i += 2) {
-
         std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();
@@ -177,7 +172,6 @@ int main(int argc, char const *argv[]) {
     }
 
     for (int i = 4; i <= 24; i += 2) {
-
         std::vector<int> slice(inputTwentyFourThousand);
 
         auto start = std::chrono::system_clock::now();

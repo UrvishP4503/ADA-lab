@@ -1,6 +1,8 @@
-#include "max_heap.hpp"
 #include <iostream>
 #include <vector>
+
+#include "max_heap.hpp"
+
 
 int main(int argc, char const *argv[]) {
     // 17, 16, 13, 14, 7, 9, 11, 5, 12, 8, 1, 4, 3, 6, 10
@@ -9,7 +11,7 @@ int main(int argc, char const *argv[]) {
     // test1.add(arr, 4);
     // test1.print();
 
-    std::vector<int> arr = {17, 16, 13, 14, 7, 9, 11, 5, 12, 8, 1, 4, 3, 6, 10};
+    std::vector<int> arr = {17, 42, 89, 5, 61, 33, 98, 12, 77, 25};
     Max_heap<int> test2 = arr;
 
     std::cout << "Given list of elements: ";

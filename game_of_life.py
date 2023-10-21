@@ -1,18 +1,15 @@
 def get_next_gen(mat):
-    new_mat = [row[:] for row in mat]
+    new_mat = [[0 for _ in range(len(mat[0]))] for _ in range(len(mat))]
+
     for row in range(len(mat)):
         for col in range(len(mat[0])):
             alive_neighbours = get_neighbours_count(mat, row, col)
             if mat[row][col] == 1:
                 if alive_neighbours == 2 or alive_neighbours == 3:
                     new_mat[row][col] = 1
-                elif alive_neighbours < 2 or alive_neighbours > 3:
-                    new_mat[row][col] = 0
             elif mat[row][col] == 0:
                 if alive_neighbours == 3:
                     new_mat[row][col] = 1
-                else:
-                    new_mat[row][col] = mat[row][col]
 
     return new_mat
 
@@ -29,11 +26,11 @@ def get_neighbours_count(mat, row, col) -> int:
 
 
 matrix = [
-    [0, 0, 0, 0, 0],
-    [0, 1, 0, 1, 0],
-    [0, 0, 1, 1, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0],
+    [0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
 ]
 
 print_matrix = lambda mat: print("\n".join([" ".join(map(str, row)) for row in mat]))
@@ -53,11 +50,6 @@ print("Next Generation")
 matrix = get_next_gen(matrix)
 print_matrix(matrix)
 
-matrix = get_next_gen(matrix)
-matrix = get_next_gen(matrix)
-matrix = get_next_gen(matrix)
-matrix = get_next_gen(matrix)
-matrix = get_next_gen(matrix)
 print("Next Generation")
 matrix = get_next_gen(matrix)
 print_matrix(matrix)

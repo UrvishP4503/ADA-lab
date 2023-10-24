@@ -16,6 +16,28 @@ def get_next_gen(mat):
 
 def get_neighbours_count(mat, row, col) -> int:
     val = 0
+    # up = row - 1
+    # down = row + 1
+    # left = col - 1
+    # right = col + 1
+
+    # if up >= 0:
+    #     val += mat[up][col]
+    # if down < len(mat):
+    #     val += mat[down][col]
+    # if left >= 0:
+    #     val += mat[row][left]
+    #     if up >= 0:
+    #         val += mat[up][left]
+    #     if down < len(mat):
+    #         val += mat[down][left]
+    # if right < len(mat[0]):
+    #     val += mat[row][right]
+    #     if up >= 0:
+    #         val += mat[up][right]
+    #     if down < len(mat):
+    #         val += mat[down][right]
+
     for i in range(-1, 2):
         for j in range(-1, 2):
             t_row = (row + i + len(mat)) % len(mat)
@@ -50,6 +72,27 @@ print("Next Generation")
 matrix = get_next_gen(matrix)
 print_matrix(matrix)
 
+print("Next Generation")
+matrix = get_next_gen(matrix)
+print_matrix(matrix)
+
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
+matrix = get_next_gen(matrix)
 print("Next Generation")
 matrix = get_next_gen(matrix)
 print_matrix(matrix)

@@ -1,8 +1,8 @@
-from functools import cache
+from functools import lru_cache
 
 
 def matrixChainOrder(dims: list[int]) -> int:
-    @cache
+    @lru_cache
     def a(i, j):
         return min(
             (a(i, k) + dims[i] * dims[k] * dims[j] + a(k, j) for k in range(i + 1, j)),

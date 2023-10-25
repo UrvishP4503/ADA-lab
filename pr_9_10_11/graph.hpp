@@ -161,7 +161,8 @@ void Graph<T>::kruskal(T start_node) {
         if (root_from != root_to) {
             parent[root_from] = root_to;
             total_weight += weight;
-            std::cout << "Selected edge " << root_from << " -> " << root_to << std::endl;
+            std::cout << "Selected edge's node -> " << root_to << " && "
+                      << " Weight of the edge -> " << weight << std::endl;
         }
     }
 

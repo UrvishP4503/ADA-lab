@@ -44,7 +44,15 @@ int main() {
     std::string str2 = "longest";
 
     std::string result = longest_common_subsequence(str1, str2);
+    std::cout << "string 1: " << str1 << " and string 2: " << str2 << "\n";
     std::cout << "The Longest Common Subsequence is: " << result << std::endl;
+
+    str1 = "ABCDGH";
+    str2 = "AEDFHR";
+
+    std::string result2 = longest_common_subsequence(str1, str2);
+    std::cout << "\nstring 1: " << str1 << " and string 2: " << str2 << "\n";
+    std::cout << "The Longest Common Subsequence is: " << result2 << std::endl;
 
     return 0;
 }
